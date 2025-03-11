@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include <ctime>
 using namespace std;
 
 template <typename T>
@@ -17,7 +18,7 @@ struct Subtask
 
 
 template <typename T>
-void print_matrix (vector<vector<T>> a, ofstream &cout) {
+void printMatrix (vector<vector<T>> a, ofstream &cout) {
     for (int i = 0; i < a.size(); i++) {
         for (int j = 0; j < a[i].size(); j++) {
             cout << a[i][j] << " ";
@@ -29,23 +30,21 @@ void print_matrix (vector<vector<T>> a, ofstream &cout) {
 
 long long random();
 long long random(long long l, long long r);
-vector<long long> random_vector(int n, long long l, long long r);
-vector<long long> random_vector(int n, long long x);
-string random_string(int n, string charset);
-string random_string(int n);
-string random_string(int n, int type);
-long long random_len(int len);
-vector<long long> random_vector(vector<Subtask> subtasks, int iTest, int testnum);
-
+vector<long long> randomVector(int n, long long l, long long r);
+vector<long long> randomVector(int n, long long x);
+string randomString(int n, string charset);
+string randomString(int n);
+string randomString(int n, int type);
+long long randomLen(int len);
+vector<long long> randomVector(vector<Subtask> subtasks, int iTest, int testnum);
 
 /**
- * Generates a random long long number.
- * 
- * @return The generated random number.
+ * Tạo một số ngẫu nhiên kiểu long long.
+ *
+ * @return Số ngẫu nhiên được tạo ra.
  */
 long long random()
 {
-    srand(time(NULL));
     long long ans = 1;
     int length = rand() % 17 + 1;
     for (int i = 0; i < length; i++)
@@ -55,30 +54,27 @@ long long random()
     return ans;
 }
 
-
 /**
- * Generates a random long long number within the range [l, r].
- * 
- * @param l The lower bound (inclusive) for the generated random number.
- * @param r The upper bound (inclusive) for the generated random number.
- * @return The generated random number.
+ * Tạo một số ngẫu nhiên kiểu long long trong khoảng [l, r].
+ *
+ * @param l Giới hạn dưới (bao gồm) của số ngẫu nhiên.
+ * @param r Giới hạn trên (bao gồm) của số ngẫu nhiên.
+ * @return Số ngẫu nhiên được tạo ra.
  */
 long long random(long long l, long long r)
 {
     return l + random() % (r - l + 1);
 }
 
-
-
 /**
- * Generates a vector of random long long numbers within the range [l, r].
- * 
- * @param n The size of the vector.
- * @param l The lower bound (inclusive) for the generated random numbers.
- * @param r The upper bound (inclusive) for the generated random numbers.
- * @return The generated vector of random long long numbers.
+ * Tạo một vector gồm các số ngẫu nhiên kiểu long long trong khoảng [l, r].
+ *
+ * @param n Kích thước của vector.
+ * @param l Giới hạn dưới (bao gồm) của các số ngẫu nhiên.
+ * @param r Giới hạn trên (bao gồm) của các số ngẫu nhiên.
+ * @return Vector chứa các số ngẫu nhiên được tạo ra.
  */
-vector<long long> random_vector(int n, long long l, long long r)
+vector<long long> randomVector(int n, long long l, long long r)
 {
     vector<long long> a(n);
     for (int i = 0; i < n; i++)
@@ -89,14 +85,13 @@ vector<long long> random_vector(int n, long long l, long long r)
 }
 
 /**
- * Generates a random string of length n using the given charset.
- * 
- * @param n The length of the generated random string.
- * @param charset The charset used to generate the random string.
- * @return The generated random string.
+ * Tạo một chuỗi ngẫu nhiên có độ dài n sử dụng bộ ký tự cho trước.
+ *
+ * @param n Độ dài của chuỗi ngẫu nhiên.
+ * @param charset Bộ ký tự được sử dụng để tạo chuỗi ngẫu nhiên.
+ * @return Chuỗi ngẫu nhiên được tạo ra.
  */
-
-string random_string(int n, string charset)
+string randomString(int n, string charset)
 {
     string s = "";
     for (int i = 0; i < n; i++)
@@ -107,27 +102,24 @@ string random_string(int n, string charset)
 }
 
 /**
- * Generates a random string of length n using the default charset.
- * 
- * @param n The length of the generated random string.
- * @return The generated random string.
+ * Tạo một chuỗi ngẫu nhiên có độ dài n sử dụng bộ ký tự mặc định.
+ *
+ * @param n Độ dài của chuỗi ngẫu nhiên.
+ * @return Chuỗi ngẫu nhiên được tạo ra.
  */
-
-string random_string(int n)
+string randomString(int n)
 {
-    return random_string(n, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+    return randomString(n, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 }
 
-
 /**
- * Generates a random string of length n using the given type.
- * 
- * @param n The length of the generated random string.
- * @param type The type of the generated random string.
- * @return The generated random string.
+ * Tạo một chuỗi ngẫu nhiên có độ dài n dựa trên kiểu ký tự cho trước.
+ *
+ * @param n Độ dài của chuỗi ngẫu nhiên.
+ * @param type Loại ký tự sử dụng để tạo chuỗi ngẫu nhiên.
+ * @return Chuỗi ngẫu nhiên được tạo ra.
  */
-
-string random_string(int n, int type)
+string randomString(int n, int type)
 {
     string charset = "";
     switch (type) {
@@ -156,11 +148,16 @@ string random_string(int n, int type)
             charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             break;
     }
-    return random_string(n, charset);
+    return randomString(n, charset);
 }
 
-
-long long random_len(int len) {
+/**
+ * Tạo một số ngẫu nhiên có độ dài cố định.
+ *
+ * @param len Độ dài của số ngẫu nhiên.
+ * @return Số ngẫu nhiên được tạo ra.
+ */
+long long randomLen(int len) {
     long long ans = 0;
     for (int i = 0; i < len; i++) {
         ans = ans * 10 + rand() % 10;
@@ -168,7 +165,15 @@ long long random_len(int len) {
     return ans;
 }
 
-vector<long long> random_vector(vector<Subtask> subtasks, int iTest, int testnum) {
+/**
+ * Tạo một vector các số ngẫu nhiên dựa trên các yêu cầu của từng subtask.
+ *
+ * @param subtasks Danh sách các subtask.
+ * @param iTest Chỉ số bài kiểm tra hiện tại.
+ * @param testnum Tổng số bài kiểm tra.
+ * @return Vector các số ngẫu nhiên được tạo ra.
+ */
+vector<long long> randomVector(vector<Subtask> subtasks, int iTest, int testnum) {
     int sumPercent = 0;
     for (int i = 0; i < subtasks.size(); i++) {
         sumPercent += subtasks[i].percent;
@@ -190,33 +195,9 @@ vector<long long> random_vector(vector<Subtask> subtasks, int iTest, int testnum
         }
     }
     vector<long long> a;
-    int n = random_len(st.lenN);
+    int n = randomLen(st.lenN);
     for (int i = 0; i < n; i++) {
-        a.push_back(random_len(st.lenAi));
+        a.push_back(randomLen(st.lenAi));
     }
     return a;
-}
-
-long long random(vector<Subtask> subtasks, int iTest, int testnum) {
-    int sumPercent = 0;
-    for (int i = 0; i < subtasks.size(); i++) {
-        sumPercent += subtasks[i].percent;
-    }
-
-    for (int i = 0; i < subtasks.size(); i++) {
-        subtasks[i].percent = subtasks[i].percent * 100 / sumPercent;
-    }
-
-    for (int i = 1; i < subtasks.size(); i++) {
-        subtasks[i].percent += subtasks[i - 1].percent;
-    }
-
-    Subtask st = subtasks[0];
-    for (int i = 0; i < subtasks.size(); i++) {
-        if (iTest <= testnum * subtasks[i].percent / 100.0) {
-            st = subtasks[i];
-            break;
-        }
-    }
-    return random_len(st.lenN);
 }

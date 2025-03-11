@@ -14,6 +14,7 @@ vector<Subtask> subtasks = {
 void generateInput(int currentTest, int totalTests , string target_file = "input.txt")
 {
     ofstream cout(target_file);
+    srand(time(0) + currentTest); // Sinh số ngẫu nhiên theo thời gian thực
     // Cout ra những đầu vào cần thiết ở phía dưới
     int n = random(1, 100);
     cout << n << endl;

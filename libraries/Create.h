@@ -2,48 +2,50 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Chuyển số nguyên thành chuỗi có độ dài cố định (ít nhất 4 ký tự)
-string str(long long a) {
-    if (a == 0) return "0000";
-    if (a < 0) return "-" + str(-a);
-    string ans = "";
+// Chuyển đổi số thành chuỗi độ dài cố định (ít nhất 4 ký tự)
+string toFixedLengthString(long long number) {
+    if (number == 0) return "0000";
+    if (number < 0) return "-" + toFixedLengthString(-number);
+    string result = "";
     for (int i = 1; i <= 4; i++) {
-        ans = char((a % 10) + '0') + ans;
-        a /= 10;
+        result = char((number % 10) + '0') + result;
+        number /= 10;
     }
-    return ans;
+    return result;
 }
 
-// Tạo thư mục cho từng bộ test
-void create_set(const string& prob_name, int iTest) {
-    system(("mkdir " + prob_name + "\\Test" + str(iTest)).c_str());
+// Tạo thư mục cho từng bộ kiểm thử
+void createTestFolder(const string& taskName, int testIndex) {
+    string folderCommand = "mkdir " + taskName + "\\Test" + toFixedLengthString(testIndex);
+    system(folderCommand.c_str());
 }
 
-// Tạo thư mục gốc cho bài toán
-void create_root(const string& prob_name) {
-    system(("mkdir " + prob_name).c_str());
+// Tạo thư mục chính cho bài toán
+void initializeTaskFolder(const string& taskName) {
+    string folderCommand = "mkdir " + taskName;
+    system(folderCommand.c_str());
 }
 
 // Biên dịch chương trình
-void compile() {
+void compileSolution() {
     system("g++ solution.cpp -o solution.exe");
 }
 
-// Tạo thư mục bài toán, các bộ test và biên dịch
-void create_all_and_compile(const string& prob_name, int start, int TestNum) {
-    create_root(prob_name);
-    for (int i = start; i <= TestNum; i++) {
-        create_set(prob_name, i);
+// Chuẩn bị thư mục và biên dịch chương trình
+void setupEnvironment(const string& taskName, int startIndex, int totalTests) {
+    initializeTaskFolder(taskName);
+    for (int i = startIndex; i <= totalTests; i++) {
+        createTestFolder(taskName, i);
     }
-    compile();
+    compileSolution();
 }
 
 // Sao chép nội dung từ file nguồn sang file đích
-void copy_file(const string& source_file, const string& target_file) {
-    ifstream input(source_file);
-    ofstream output(target_file);
+void copyFileContents(const string& sourcePath, const string& destinationPath) {
+    ifstream sourceFile(sourcePath);
+    ofstream destinationFile(destinationPath);
     string line;
-    while (getline(input, line)) {
-        output << line << '\n';
+    while (getline(sourceFile, line)) {
+        destinationFile << line << '\n';
     }
 }
