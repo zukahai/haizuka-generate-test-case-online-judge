@@ -1,0 +1,26 @@
+- Hàm random()
+    + Mục đích: Tạo 1 số ngẫu nhiên từ 1 đề 10^18
+    + Ví dụ: int a = random()
+
+- Hàm random(l, r)
+    + Mục đích: Tạo số ngẫu nhiên từ l đế r 
+    + Ví dụ: int a = random(10, 20); Số a sẽ ngẫu nhiên từ 10 đến 20
+
+- Hàm randomSubtask()
+    + Tạo số có độ lớn theo subtasks
+    + Ví dụ: int a = randomSubtask()
+
+- Hàm randomVectorSubtask()
+    + Tạo vector theo subtasks
+    + Ví dụ: vector <int> a = randomVectorSubtask()
+
+- Các hàm tạo string ngẫu nhiên 
+    + randomString(n, s): Tạo chuỗi độ dài n, bao gồm các ký tự trong s 
+    + randomString(n, 0): Tạo chuỗi độ dài n, gồm các ký tự in thường từ 'a' đến 'z'
+    + randomString(n, 1): Tạo chuỗi độ dài n, gồm các ký tự in hoa từ 'A' đến 'Z'
+    + randomString(n, 2): Tạo chuỗi độ dài n, gồm các ký tự số từ '0' đến '9'
+    + randomString(n, 3): Tạo chuỗi độ dài n, gồm các ký tự in hoa và in thường 'a' đến 'z' và 'A' đến 'Z'
+    + randomString(n, 4): Tạo chuỗi độ dài n, gồm các ký tự in thường và ký tự Số
+    + randomString(n, 5): Tạo chuỗi độ dài n, gồm các ký tự in hoa và số
+    + randomString(n, 6): Tạo chuỗi độ dài n, gồm các ký in thường, in hoa, và số
+

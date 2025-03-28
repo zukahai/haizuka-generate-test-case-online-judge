@@ -3,7 +3,7 @@
 using namespace std;
 
 template <typename T>
-void print_vector (vector<T> a, ofstream &cout) {
+void printVector (vector<T> a, ofstream &cout) {
     for (int i = 0; i < a.size(); i++) {
         cout << a[i] << " ";
     }
@@ -200,4 +200,36 @@ vector<long long> randomVector(vector<Subtask> subtasks, int iTest, int testnum)
         a.push_back(randomLen(st.lenAi));
     }
     return a;
+}
+
+/*
+    Trả về một số ngẫu nhiên dựa trên các yêu cầu của từng subtask.
+    Các tham số:
+        - subtasks: Danh sách các subtask.
+        - iTest: Chỉ số bài kiểm tra hiện tại.
+        - testnum: Tổng số bài kiểm tra.
+*/
+
+long long random(vector<Subtask> subtasks, int iTest, int testnum) {
+    int sumPercent = 0;
+    for (int i = 0; i < subtasks.size(); i++) {
+        sumPercent += subtasks[i].percent;
+    }
+
+    for (int i = 0; i < subtasks.size(); i++) {
+        subtasks[i].percent = subtasks[i].percent * 100 / sumPercent;
+    }
+
+    for (int i = 1; i < subtasks.size(); i++) {
+        subtasks[i].percent += subtasks[i - 1].percent;
+    }
+
+    Subtask st = subtasks[0];
+    for (int i = 0; i < subtasks.size(); i++) {
+        if (iTest <= testnum * subtasks[i].percent / 100.0) {
+            st = subtasks[i];
+            break;
+        }
+    }
+    return randomLen(st.lenN);
 }
